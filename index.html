@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Лабораторная работа</title>
+    <script type="text/javascript">
+        function calculateLnSeries(x, iterations) {
+            let sum = 0;
+            
+            
+            for (let n = 0; n < iterations; n++) {
+                let term = (Math.pow(x, 2 * n + 1)) / (2 * n + 1);
+                sum = sum + term;  
+            }
+            
+            return 2 * sum; 
+        }
+
+        function calculateLn() {
+            let iterations = Number(document.forms["form"].elements["iterations"].value);
+            let x = Number(document.forms["form"].elements["x"].value);
+            let result;
+
+    
+            if (Math.abs(x) < 1) {
+                result = calculateLnSeries(x, iterations);
+                document.write("ln((1 + x) / (1 - x)) = " + result);
+            } else {
+                document.write("Значение x должно быть меньше 1.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <form id="form">
+                <input id="iterations" type="text" placeholder="Введите количество итераций">
+                <input id="x" type="text" placeholder="Введите x ">
+                <input class="button" onclick="calculateLn()" type="button" value="Отправить">
+            </form>
+        </div>
+    </section>
+</body>
+</html>
